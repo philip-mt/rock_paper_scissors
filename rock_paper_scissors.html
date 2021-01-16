@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="utf-8" /> 
+    <title></title> 
+</head> 
+<body> 
+ 
+<script>
+
+function game(){
+    const games = 5;
+    let playerPoints = 0;
+    let computerPoints = 0;
+    for(let i = 0; i < games; i++) {
+
+// get player answer and store in a variable
+let playerSelection = prompt("Rock, Paper or Scissors").toLowerCase();
+
+// generate computer answer
+function computerPlay () { return (["paper", "scissors","rock"])[Math.random() * 3 | 0]; }
+let computerSelection = computerPlay();
+
+// call a function to play a round, then log the winner and display increment points
+let round = playRound(playerSelection, computerSelection);
+if(round === "wins"){
+    playerPoints++;
+    console.log("You Win")
+ } else if (round === "loses"){
+     computerPoints++;
+     console.log("You Lose")
+ } else if(round === "ties") {
+     console.log("Tied");
+ }
+}
+
+// display end result once either computer of player reaches 5 points
+if(playerPoints > computerPoints){
+        console.log('');
+        console.log("Congratulations! You beat the computer " + playerPoints + " to " + computerPoints);
+    } else {
+        console.log("Sorry! You lost to the computer " + computerPoints + " to " + playerPoints);
+    }
+} // end game();
+
+// play a round to determine winner or loser
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == "rock") {
+        if (computerSelection == "scissors") {
+            return "wins";
+        } else if (computerSelection == "paper") {
+            return "loses";
+        } else {
+            return "ties";
+        }
+    }
+    if (playerSelection == "paper") {
+        if (computerSelection == "rock") {
+            return "wins";
+        } else if (computerSelection == "scissors") {
+            return "loses";
+        } else {
+            return "ties";
+        }
+    }
+    if (playerSelection == "scissors") {
+        if (computerSelection == "paper") {
+            return "wins";
+        } else if (computerSelection == "paper") {
+            return "loses";
+        } else {
+            return "ties";
+        }
+    }
+}
+
+</script>
+
+</body> 
+</html> 
