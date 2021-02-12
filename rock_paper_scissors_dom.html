@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="utf-8" /> 
+    <title></title> 
+</head> 
+<body> 
+ 
+    <div id="buttons">
+        <button>rock</button>
+        <button>paper</button>
+        <button>scissors</button>
+      </div>
+
+      <div id=roundResult></div>
+      <div id=gameResult></div>
+
+
+<script>
+    
+// Store button content in a variable & run game function
+
+document.getElementById("results");
+
+document.getElementById("buttons").addEventListener("click", event => { 
+    let target = event.target;
+    if (target.matches('button')) {
+        let playerSelection = target.innerHTML
+        return game();  
+
+function game(){
+    const games = 3;
+    let playerPoints = 0;
+    let computerPoints = 0;
+    for(let i = 0; i < games; i++) {
+
+
+// generate computer answer
+function computerPlay () { return (["paper", "scissors","rock"])[Math.random() * 3 | 0]; }
+let computerSelection = computerPlay();
+
+// call a function to play a round, then log the winner and display increment points
+let round = playRound(playerSelection, computerSelection);
+if(round === "wins"){
+    playerPoints++;
+    let roundWin = document.createTextNode("You Win")
+    roundResult.appendChild(roundWin)
+ } else if (round === "loses"){
+     computerPoints++;
+     let roundLose = document.createTextNode("You Lose")
+     roundResult.appendChild(roundLose)
+ } else if(round === "ties") {
+    let roundTie = document.createTextNode("Tied")
+    roundResult.appendChild(roundTie);
+ }
+}
+
+// display end result once either computer of player reaches 5 points
+if(playerPoints > computerPoints){
+        console.log('');
+        let gameWin = document.createTextNode("Congratulations! You beat the computer " + playerPoints + " to " + computerPoints);
+        gameResult.appendChild(gameWin);
+    } else {
+        let gameLose = document.createTextNode("Sorry! You lost to the computer " + computerPoints + " to " + playerPoints);
+        gameResult.appendChild(gameLose);
+   
+    }
+    
+}
+
+        }
+
+
+
+    })
+
+ // end game();
+
+
+// play a round to determine winner or loser
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == "rock") {
+        if (computerSelection == "scissors") {
+            return "wins";
+        } else if (computerSelection == "paper") {
+            return "loses";
+        } else {
+            return "ties";
+        }
+    }
+    if (playerSelection == "paper") {
+        if (computerSelection == "rock") {
+            return "wins";
+        } else if (computerSelection == "scissors") {
+            return "loses";
+        } else {
+            return "ties";
+        }
+    }
+    if (playerSelection == "scissors") {
+        if (computerSelection == "paper") {
+            return "wins";
+        } else if (computerSelection == "paper") {
+            return "loses";
+        } else {
+            return "ties";
+        }
+    }
+}
+
+</script>
+
+</body> 
+</html> 
